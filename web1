@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus AeroSpace | Galactic Flight Evolution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-blue: #00f0ff;
+            --neon-pink: #ff00f0;
+            --deep-space: #0a0a1a;
+            --starlight: #f0f0ff;
+            --tech-gold: #ffd700;
+            --luxury-purple: #b388ff;
+            --platinum: #e5e4e2;
+            --diamond: #b9f2ff;
+            --cosmic-green: #00ff99;
+        }
+
+        @font-face {
+            font-family: 'Orbitron';
+            src: url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            color: var(--starlight);
+            font-family: 'Orbitron', 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            margin: 0;
+            height: 100vh;
+        }
+
+        /* Cosmic Background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.2;
+            animation: cosmic-drift 120s linear infinite;
+        }
+
+        @keyframes cosmic-drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-200px, -200px); }
+        }
+
+        /* Nebula Layer */
+        .nebula-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(255, 0, 240, 0.15) 0%, transparent 50%);
+            animation: nebula-pulse 30s ease-in-out infinite;
+        }
+
+        @keyframes nebula-pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Enhanced Luxury Particles */
+        .luxury-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--neon-blue);
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            filter: drop-shadow(0 0 10px var(--neon-blue)) blur(1px);
+            animation: graviton-float 10s infinite ease-in-out, particle-shift 5s infinite alternate;
+            transform-origin: center;
+        }
+
+        .luxury-particle:nth-child(odd) {
+            background: var(--neon-pink);
+            filter: drop-shadow(0 0 10px var(--neon-pink)) blur(1px);
+        }
+
+        @keyframes graviton-float {
+            0% {
+                transform: translateY(100vh) translateX(calc(var(--x) * 1vw)) translateZ(0) scale(0.5);
+                opacity: 0;
+            }
+            20% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% {
+                transform: translateY(-100vh) translateX(calc(var(--x) * 1vw)) translateZ(50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particle-shift {
+            0% { background: var(--neon-blue); filter: drop-shadow(0 0 10px var(--neon-blue)) blur(1px); }
+            50% { background: var(--cosmic-green); filter: drop-shadow(0 0 15px var(--cosmic-green)) blur(1.5px); }
+            100% { background: var(--neon-pink); filter: drop-shadow(0 0 10px var(--neon-pink)) blur(1px); }
+        }
+
+        /* Spacecraft Trails */
+        .spacecraft-trail {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .spacecraft {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300f0ff"><path d="M12 2L4 12l8 10 8-10-8-10zm0 15a5 5 0 110-10 5 5 0 010 10z"/></svg>') no-repeat center;
+            background-size: contain;
+            filter: drop-shadow(0 0 15px var(--neon-blue)) brightness(1.5);
+            animation: orbit-flight calc(var(--duration) * 1s) linear infinite, thrust-pulse 0.5s infinite;
+            opacity: 0;
+            transform: rotate(45deg);
+        }
+
+        @keyframes orbit-flight {
+            0% { transform: translateX(-150px) translateY(calc(var(--y) * 1px)) scale(0.5); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 150px)) translateY(calc(var(--y) * 1px)) scale(0.5); opacity: 0; }
+        }
+
+        @keyframes thrust-pulse {
+            0%, 100% { filter: drop-shadow(0 0 15px var(--neon-blue)) brightness(1.5); }
+            50% { filter: drop-shadow(0 0 25px var(--neon-blue)) brightness(2); }
+        }
+
+        /* Holographic Interface */
+        .holo-interface {
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .holo-interface:hover {
+            transform: translateZ(20px) scale(1.05);
+            box-shadow: 0 0 80px rgba(0, 240, 255, 0.5);
+        }
+
+        .holo-interface::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink), var(--cosmic-green));
+            opacity: 0;
+            animation: holo-scan 4s infinite ease-in-out;
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .holo-interface:hover::before {
+            opacity: 0.6;
+        }
+
+        @keyframes holo-scan {
+            0% { transform: translateY(-100%) rotateX(20deg); }
+            50% { transform: translateY(100%) rotateX(-20deg); }
+            100% { transform: translateY(-100%) rotateX(20deg); }
+        }
+
+        /* Enhanced Starfield */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, var(--starlight) 20%, transparent 70%);
+            border-radius: 50%;
+            animation: cosmic-twinkle var(--duration) infinite ease-in-out;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+            transform-style: preserve-3d;
+        }
+
+        @keyframes cosmic-twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1) translateZ(0); }
+            50% { opacity: 1; transform: scale(1.5) translateZ(30px); }
+        }
+
+        /* Dynamic Grid */
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px;
+            z-index: -1;
+            opacity: 0.5;
+            animation: grid-shift 20s linear infinite;
+        }
+
+        @keyframes grid-shift {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        /* Neon Effects */
+        .neon-text {
+            animation: neon-flicker 2s ease-in-out infinite;
+        }
+
+        @keyframes neon-flicker {
+            0%, 100% { text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-pink); }
+            50% { text-shadow: 0 0 25px var(--neon-blue), 0 0 50px var(--neon-pink), 0 0 75px var(--cosmic-green); }
+        }
+
+        .gradient-border {
+            border: 3px solid transparent;
+            background: linear-gradient(var(--deep-space), var(--deep-space)) padding-box,
+                        linear-gradient(135deg, var(--neon-blue), var(--neon-pink), var(--cosmic-green)) border-box;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+
+        .gradient-border:hover {
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: zero-gravity 5s ease-in-out infinite;
+        }
+
+        @keyframes zero-gravity {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-30px) translateZ(20px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background Elements -->
+    <div class="cosmic-bg"></div>
+    <div class="nebula-layer"></div>
+    <div class="stars" id="stars"></div>
+    <div class="grid-pattern"></div>
+    <div class="spacecraft-trail" id="spacecraftTrail"></div>
+    <div id="luxuryParticles"></div>
+
+    <!-- Audio Effects -->
+    <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-257.mp3" preload="auto"></audio>
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-quick-jump-arcade-game-239.mp3" preload="auto"></audio>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-opacity-95 bg-black backdrop-filter backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-24 items-center">
+                <div class="flex items-center">
+                    <div class="h-14 w-14 gradient-border rounded-full flex items-center justify-center floating">
+                        <i class="fas fa-rocket text-3xl text-neon-blue"></i>
+                    </div>
+                    <span class="ml-4 text-2xl font-bold neon-text">NEXUS AEROSPACE</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#mission" class="text-starlight hover:text-neon-blue transition-all duration-300">Mission</a>
+                    <a href="#vehicles" class="text-starlight hover:text-neon-blue transition-all duration-300">Fleet</a>
+                    <a href="#technology" class="text-starlight hover:text-neon-blue transition-all duration-300">Tech</a>
+                    <a href="#ai" class="text-starlight hover:text-neon-blue transition-all duration-300">AI Core</a>
+                    <a href="#contact" class="gradient-border px-6 py-3 text-neon-blue hover:bg-opacity-10 transition-all duration-300">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:grid md:grid-cols-2 md:gap-16 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-8 neon-text">Galactic Flight Evolution</h1>
+                    <p class="text-2xl mb-10 text-starlight opacity-90">
+                        Harnessing autonomous AI and cosmic engineering to propel humanity into the stars.
+                    </p>
+                    <div class="flex space-x-6">
+                        <button class="gradient-border px-10 py-4 text-neon-blue hover:bg-opacity-20 transition-all duration-300 font-bold">Explore Fleet</button>
+                        <button class="gradient-border px-10 py-4 text-neon-pink hover:bg-opacity-20 transition-all duration-300 font-bold">AI Simulation</button>
+                    </div>
+                </div>
+                <div class="relative h-96">
+                    <div class="absolute inset-0 holo-interface p-6">
+                        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031" class="w-full h-full object-cover rounded-lg floating" alt="Spacecraft">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicles Section -->
+    <section id="vehicles" class="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center neon-text">Autonomous Fleet</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="holo-interface p-6">
+                    <i class="fas fa-drone-alt text-8xl text-neon-blue mb-6 floating"></i>
+                    <h3 class="text-3xl font-bold mb-4 text-neon-blue">Nexus X1</h3>
+                    <p class="text-starlight opacity-80">Aerial transport with quantum navigation and zero-emission propulsion.</p>
+                </div>
+                <div class="holo-interface p-6">
+                    <i class="fas fa-satellite-dish text-8xl text-neon-blue mb-6 floating"></i>
+                    <h3 class="text-3xl font-bold mb-4 text-neon-blue">Orion S7</h3>
+                    <p class="text-starlight opacity-80">Orbital vehicle with autonomous docking and plasma thrusters.</p>
+                </div>
+                <div class="holo-interface p-6">
+                    <i class="fas fa-rocket text-8xl text-neon-blue mb-6 floating"></i>
+                    <h3 class="text-3xl font-bold mb-4 text-neon-blue">Mars Cruiser</h3>
+                    <p class="text-starlight opacity-80">Interplanetary craft with AI-driven life support systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced Starfield
+        function createStars() {
+            const stars = document.getElementById('stars');
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 4}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${5 + Math.random() * 15}s`);
+                stars.appendChild(star);
+            }
+        }
+
+        // Luxury Particles
+        function createLuxuryParticles() {
+            const container = document.getElementById('luxuryParticles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'luxury-particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.setProperty('--x', `${-50 + Math.random() * 100}`);
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(particle);
+            }
+        }
+
+        // Spacecraft Trails
+        function createSpacecrafts() {
+            const trail = document.getElementById('spacecraftTrail');
+            for (let i = 0; i < 10; i++) {
+                const craft = document.createElement('div');
+                craft.className = 'spacecraft';
+                craft.style.top = `${Math.random() * 100}%`;
+                craft.style.setProperty('--y', `${-200 + Math.random() * 400}`);
+                craft.style.setProperty('--duration', `${10 + Math.random() * 20}`);
+                craft.style.animationDelay = `${Math.random() * 10}s`;
+                trail.appendChild(craft);
+            }
+        }
+
+        // Interactive Effects
+        document.querySelectorAll('a, button, .holo-interface').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.getElementById('hoverSound').currentTime = 0;
+                document.getElementById('hoverSound').play();
+            });
+            el.addEventListener('click', () => {
+                document.getElementById('clickSound').currentTime = 0;
+                document.getElementById('clickSound').play();
+            });
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            createLuxuryParticles();
+            createSpacecrafts();
+        });
+    </script>
+</body>
+</html>
