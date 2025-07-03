@@ -234,12 +234,7 @@
 
         /* Neon Effects */
         .neon-text {
-            animation: neon-flicker 2s ease-in-out infinite;
-        }
-
-        @keyframes neon-flicker {
-            0%, 100% { text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-pink); }
-            50% { text-shadow: 0 0 25px var(--neon-blue), 0 0 50px var(--neon-pink), 0 0 75px var(--cosmic-green); }
+            text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-pink);
         }
 
         .gradient-border {
@@ -253,16 +248,6 @@
         .gradient-border:hover {
             box-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
             transform: translateY(-5px);
-        }
-
-        /* Floating Animation */
-        .floating {
-            animation: zero-gravity 5s ease-in-out infinite;
-        }
-
-        @keyframes zero-gravity {
-            0%, 100% { transform: translateY(0) translateZ(0); }
-            50% { transform: translateY(-30px) translateZ(20px); }
         }
     </style>
 </head>
@@ -284,7 +269,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-24 items-center">
                 <div class="flex items-center">
-                    <div class="h-14 w-14 gradient-border rounded-full flex items-center justify-center floating">
+                    <div class="h-14 w-14 gradient-border rounded-full flex items-center justify-center">
                         <i class="fas fa-rocket text-3xl text-neon-blue"></i>
                     </div>
                     <span class="ml-4 text-2xl font-bold neon-text">NEXUS AEROSPACE</span>
@@ -316,7 +301,7 @@
                 </div>
                 <div class="relative h-96">
                     <div class="absolute inset-0 holo-interface p-6">
-                        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031" class="w-full h-full object-cover rounded-lg floating" alt="Spacecraft">
+                        <img src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031" class="w-full h-full object-cover rounded-lg" alt="Spacecraft">
                     </div>
                 </div>
             </div>
@@ -329,17 +314,17 @@
             <h2 class="text-4xl md:text-6xl font-bold mb-16 text-center neon-text">Autonomous Fleet</h2>
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="holo-interface p-6">
-                    <i class="fas fa-drone-alt text-8xl text-neon-blue mb-6 floating"></i>
+                    <i class="fas fa-drone-alt text-8xl text-neon-blue mb-6"></i>
                     <h3 class="text-3xl font-bold mb-4 text-neon-blue">Nexus X1</h3>
                     <p class="text-starlight opacity-80">Aerial transport with quantum navigation and zero-emission propulsion.</p>
                 </div>
                 <div class="holo-interface p-6">
-                    <i class="fas fa-satellite-dish text-8xl text-neon-blue mb-6 floating"></i>
+                    <i class="fas fa-satellite-dish text-8xl text-neon-blue mb-6"></i>
                     <h3 class="text-3xl font-bold mb-4 text-neon-blue">Orion S7</h3>
                     <p class="text-starlight opacity-80">Orbital vehicle with autonomous docking and plasma thrusters.</p>
                 </div>
                 <div class="holo-interface p-6">
-                    <i class="fas fa-rocket text-8xl text-neon-blue mb-6 floating"></i>
+                    <i class="fas fa-rocket text-8xl text-neon-blue mb-6"></i>
                     <h3 class="text-3xl font-bold mb-4 text-neon-blue">Mars Cruiser</h3>
                     <p class="text-starlight opacity-80">Interplanetary craft with AI-driven life support systems.</p>
                 </div>
